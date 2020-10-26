@@ -1,0 +1,25 @@
+
+//////////////////////////////////////////////////////////////////////
+////////                    ANGULAR                        //////////
+///////                                                     ////////
+///////////////////////////////////////////////////////////////////
+
+
+dans angular.json on ajoute 
+angular.scss
+
+ "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles.scss"
+            ],
+
+///////////////////////////////
+Vous allez maintenant créer un nouveau component à l'aide du CLI d'Angular.  Depuis le dossier principal de votre projet, tapez la commande suivante :
+
+ng generate component mon-premier 
+
+
+/////////// LES PIPES  === FILTRE SUR VUE.JS
+{{ lastUpdate | async | date: 'd MMMM EEEE  y' | uppercase }}  le pipe date transforme l'object Date en string
+
+///////////// LE PIPE Async pour éviter un bug lorsque on attend une Promise en requetant une base de donnée par exemple
