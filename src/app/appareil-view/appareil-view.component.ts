@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppareilService } from '../services/appareil.service'
 
 @Component({
@@ -21,6 +22,7 @@ export class AppareilViewComponent implements OnInit {
   )
   isAuth= false
   appareils: any []
+  appareilSubscription: Subscription
 
   constructor( private appareilService: AppareilService){ // On inject le service dans le constructor mais il faut aussii l'implementer dans la declaration de classe
     setTimeout(
@@ -30,7 +32,18 @@ export class AppareilViewComponent implements OnInit {
     )
   }
   ngOnInit(){ // executé apres la creation du component par angular just apres le constructor
-      this.appareils = this.appareilService.appareils // recupère le tableau dans le service appareilService et le rajoute dans appareil = any []
+    
+    this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+      (appareils: any[]) => {
+        this.appareils = appareils // recupère le tableau dans le service appareilService et le rajoute dans appareil = any []
+      }
+    )
+    this.appareilService.emitAppareilSubject()
+    setTimeout(
+      ()=>{
+        this.appareilService.getAppareilsToServer()
+      } ,2000
+    )
   }
   onAllumer(){
     this.appareilService.switchOnAll()
@@ -40,6 +53,14 @@ export class AppareilViewComponent implements OnInit {
   onEteindre(){
     this.appareilService.switchOffAll()
     console.log('tt est allumé')
+  }
+
+  onSave(){
+    this.appareilService.saveAppareilsToServer()
+  }
+
+  onFetch(){
+    this.appareilService.getAppareilsToServer()
   }
 
 }

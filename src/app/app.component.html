@@ -1,13 +1,20 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
       <ul class="nav navbar-nav">
+        <!-- routerLinkActive="active" rajoute la classe active lorsqu'on est sur le lien du composant -->
         <li routerLinkActive="active"><a routerLink="auth"   >Authentification</a></li>
         <li routerLinkActive="active" ><a routerLink="appareils"   >Appareils</a></li>
+        <li routerLinkActive="active" ><a routerLink="edit" >Nouvel Appareil</a></li>
+        <li routerLinkActive="active" ><a routerLink="users" >Liste des utilisateurs</a></li>
       </ul>
+      <div class="navbar-right">
+        <p> Vous êtes connecté depuis {{ secondes }} secondes</p>
+      </div>
   </div>
 </nav>
 <div class="container">
   <div class = "row">
+    <!-- la ou le composant est affiché -->
     <router-outlet></router-outlet>
   </div>
 

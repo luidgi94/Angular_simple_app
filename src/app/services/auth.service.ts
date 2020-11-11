@@ -2,7 +2,7 @@ export class AuthService{
     isAuth = false
     signIn(){
         return new Promise(
-            (resolve)=>{
+            (resolve, reject)=>{
               const date = new Date()
               setTimeout(
                 ()=>{

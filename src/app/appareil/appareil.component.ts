@@ -10,6 +10,8 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName: string; // permet d'etre envoyer aux composant enfant comme props(import Input
   @Input() appareilStatus: string;
   @Input() indexOfAppareil: number;
+  @Input() id: number;
+
   constructor( private appareilService: AppareilService ) { 
 
 
